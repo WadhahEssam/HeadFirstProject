@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Something Advisor</string>
+    <string name="something_advisor">Something Advisor</string>
+    <string name="find_something">Find Something</string>
+    <string name="default_something">No Something Selected</string>
+    <string-array name="something_items">
+        <item>First Something</item>
+        <item>Second Something</item>
+    </string-array>
+</resources>
