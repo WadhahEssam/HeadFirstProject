@@ -1,14 +1,12 @@
 package com.example.myapplication;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RectShape;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -40,11 +38,19 @@ public class WeightActivity extends Activity {
         sendButtonWrapper.setGravity(Gravity.END);
         Button sendButton = new Button(this);
         sendButton.setText("Send");
-        sendButton.setWidth(80);
         sendButton.setOnClickListener(view -> {
             Toast.makeText(this, "Sending the message...", Toast.LENGTH_SHORT).show();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
         });
-        sendButtonWrapper.addView(sendButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        LinearLayout.LayoutParams sendButtonWrapperLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        sendButtonWrapperLayoutParams.bottomMargin = 10;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            sendButtonWrapperLayoutParams.setMarginEnd(5);
+        }
+        sendButtonWrapper.addView(sendButton, sendButtonWrapperLayoutParams);
         wrapperLayout.addView(sendButtonWrapper);
 
         setContentView(wrapperLayout);

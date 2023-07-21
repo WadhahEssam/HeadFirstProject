@@ -25,7 +25,8 @@ public class Generator {
 
     static public LinearLayout generateActivityWrapper(Context context, String orientation) {
         LinearLayout wrapperLayout = new LinearLayout(context);
-        wrapperLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        wrapperLayout.setLayoutParams(layoutParams);
         wrapperLayout.setOrientation(orientation == "row" ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
         return wrapperLayout;
     }

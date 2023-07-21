@@ -141,7 +141,6 @@ public class LifeCycleActivity extends Activity {
                     secondsTextView.setTextColor(Color.RED);
                 }
                 secondsTextView.setText(seconds + "");
-                System.out.println("Running");
                 handler.postDelayed(this, 1000);
             }
         });
