@@ -20,9 +20,8 @@
         <activity
             android:name=".WeightActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".FrameLayoutActivity"
-        />
+        <activity android:name=".FrameLayoutActivity" />
+        <activity android:name=".ConstraintLayoutActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

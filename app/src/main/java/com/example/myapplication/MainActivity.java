@@ -120,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
         });
         wrapperLayout.addView(buttonForFrameLayoutActivity);
 
+        View buttonForConstraintLayoutActivity = Generator.generateButtonWithWrapper(this, "Constraint Layout Activity", view -> {
+            startActivity(new Intent(this, ConstraintLayoutActivity.class));
+        });
+        wrapperLayout.addView(buttonForConstraintLayoutActivity);
+
         setContentView(mainScrollview);
     }
 
