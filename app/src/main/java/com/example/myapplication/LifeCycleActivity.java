@@ -30,17 +30,10 @@ public class LifeCycleActivity extends Activity {
             this.seconds = savedInstance.getInt("seconds");
             this.isWasRunningWhenActivityPaused = savedInstance.getBoolean("isWasRunningWhenActivityPaused");
         }
-
-        LinearLayout.LayoutParams mainLayoutParams =
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        LinearLayout mainLayout = new LinearLayout(this);
-        mainLayout.setOrientation(LinearLayout.VERTICAL);
-
+        
         LinearLayout wrapperLayout = new LinearLayout(this);
         wrapperLayout.setOrientation(LinearLayout.VERTICAL);
         wrapperLayout.setGravity(Gravity.CENTER);
-        wrapperLayout.setLayoutParams(mainLayoutParams);
-        mainLayout.addView(wrapperLayout);
 
         TextView secondsTextView = new TextView(this);
         this.secondsTextView = secondsTextView;
@@ -78,7 +71,7 @@ public class LifeCycleActivity extends Activity {
 
         runTimer();
 
-        setContentView(mainLayout);
+        setContentView(wrapperLayout);
     }
 
     // This function gets called before the onDestroy function is called.

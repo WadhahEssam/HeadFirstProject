@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 // This is the most right way I did the components without xml
+// Components who use the LinearLayout.LayoutParams should be inside a linear layout
+// and the LinearLayout.LayoutParams represent the layout_[*] xml attributes
 
 public class WeightActivity extends Activity {
     @Override

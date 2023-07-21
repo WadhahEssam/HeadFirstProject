@@ -28,15 +28,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        LinearLayout.LayoutParams mainLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        LinearLayout mainLayout = new LinearLayout(this);
-        mainLayout.setOrientation(LinearLayout.VERTICAL);
-
         LinearLayout wrapperLayout = new LinearLayout(this);
         wrapperLayout.setOrientation(LinearLayout.VERTICAL);
         wrapperLayout.setGravity(Gravity.CENTER);
-        wrapperLayout.setLayoutParams(mainLayoutParams);
-        mainLayout.addView(wrapperLayout);
 
         Spinner itemsSpinner = new Spinner(this);
         this.itemsSpinner = itemsSpinner;
@@ -116,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         });
         wrapperLayout.addView(buttonForWeightLayout);
 
-        setContentView(mainLayout);
+        setContentView(wrapperLayout);
     }
 
     public void handleOnSubmit() {
