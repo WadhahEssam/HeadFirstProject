@@ -30,7 +30,7 @@ public class LifeCycleActivity extends Activity {
             this.seconds = savedInstance.getInt("seconds");
             this.isWasRunningWhenActivityPaused = savedInstance.getBoolean("isWasRunningWhenActivityPaused");
         }
-        
+
         LinearLayout wrapperLayout = new LinearLayout(this);
         wrapperLayout.setOrientation(LinearLayout.VERTICAL);
         wrapperLayout.setGravity(Gravity.CENTER);

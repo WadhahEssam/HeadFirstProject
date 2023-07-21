@@ -21,6 +21,9 @@
             android:name=".WeightActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".FrameLayoutActivity"
+        />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

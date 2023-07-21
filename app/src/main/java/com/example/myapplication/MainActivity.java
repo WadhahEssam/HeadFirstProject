@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -28,9 +29,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ScrollView mainScrollview = new ScrollView(this);
+
         LinearLayout wrapperLayout = new LinearLayout(this);
         wrapperLayout.setOrientation(LinearLayout.VERTICAL);
         wrapperLayout.setGravity(Gravity.CENTER);
+        wrapperLayout.setPadding(0, 100, 0, 5000);
+        mainScrollview.addView(wrapperLayout);
 
         Spinner itemsSpinner = new Spinner(this);
         this.itemsSpinner = itemsSpinner;
@@ -110,7 +115,12 @@ public class MainActivity extends AppCompatActivity {
         });
         wrapperLayout.addView(buttonForWeightLayout);
 
-        setContentView(wrapperLayout);
+        View buttonForFrameLayoutActivity = Generator.generateButtonWithWrapper(this, "Frame Layout Activity", view -> {
+            startActivity(new Intent(this, FrameLayoutActivity.class));
+        });
+        wrapperLayout.addView(buttonForFrameLayoutActivity);
+
+        setContentView(mainScrollview);
     }
 
     public void handleOnSubmit() {
