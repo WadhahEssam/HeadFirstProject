@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+// This is the most right way I did the components without xml
+
 public class WeightActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,10 +35,14 @@ public class WeightActivity extends Activity {
         messageFieldLayoutParams.weight = 1;
         wrapperLayout.addView(messageField, messageFieldLayoutParams);
 
-        LinearLayout sendButtonWrapper = new LinearLayout(this);
-        sendButtonWrapper.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        sendButtonWrapper.setGravity(Gravity.END);
         Button sendButton = new Button(this);
+        LinearLayout.LayoutParams sendButtonLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        sendButtonLayoutParams.gravity = Gravity.END;
+        sendButtonLayoutParams.bottomMargin = 10;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            sendButtonLayoutParams.setMarginEnd(5);
+        }
+        sendButton.setLayoutParams(sendButtonLayoutParams);
         sendButton.setText("Send");
         sendButton.setOnClickListener(view -> {
             Toast.makeText(this, "Sending the message...", Toast.LENGTH_SHORT).show();
@@ -45,13 +51,7 @@ public class WeightActivity extends Activity {
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         });
-        LinearLayout.LayoutParams sendButtonWrapperLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        sendButtonWrapperLayoutParams.bottomMargin = 10;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            sendButtonWrapperLayoutParams.setMarginEnd(5);
-        }
-        sendButtonWrapper.addView(sendButton, sendButtonWrapperLayoutParams);
-        wrapperLayout.addView(sendButtonWrapper);
+        wrapperLayout.addView(sendButton);
 
         setContentView(wrapperLayout);
     }
