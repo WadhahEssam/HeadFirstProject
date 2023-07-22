@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.StarBuzz.StarBuzzMainActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,6 +126,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, ConstraintLayoutActivity.class));
         });
         wrapperLayout.addView(buttonForConstraintLayoutActivity);
+
+        View buttonForDrinksApp = Generator.generateButtonWithWrapper(this, "StarBuzz", view -> {
+            startActivity(new Intent(this, StarBuzzMainActivity.class));
+        });
+        wrapperLayout.addView(buttonForDrinksApp);
 
         setContentView(mainScrollview);
     }
