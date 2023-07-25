@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             toolbar.setTitle("Main Screen");
             toolbar.setBackgroundColor(Color.parseColor("#629FE0"));
             toolbar.setTitleTextColor(Color.WHITE);
+            toolbar.inflateMenu(R.menu.main);
             if (theme == null) {
                 wrapperLayout.addView(toolbar);
             }
