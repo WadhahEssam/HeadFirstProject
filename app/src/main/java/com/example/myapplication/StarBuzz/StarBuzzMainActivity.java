@@ -16,13 +16,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class StarBuzzMainActivity extends Activity {
+public class StarBuzzMainActivity extends AppCompatActivity {
     private ArrayList<String> entries = new ArrayList<String>(List.of("Drinks", "Food", "Something Else"));
 
     @Override
@@ -79,7 +81,7 @@ public class StarBuzzMainActivity extends Activity {
         LinearLayout footer = new LinearLayout(this);
         footer.setOrientation(LinearLayout.VERTICAL);
 
-        Button addNewItemButton = new Button(this);
+        Button addNewItemButton = new AppCompatButton(this);
         addNewItemButton.setText("Add New Item");
         addNewItemButton.setOnClickListener(view -> {
             entries.add("New Stuff");

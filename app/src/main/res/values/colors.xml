@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="kindaBlue">#5889BC</color>
+    <color name="kindaBlueAccent">#629FE0</color>
+    <color name="kindaBlueDark">#4C749D</color>
 </resources>

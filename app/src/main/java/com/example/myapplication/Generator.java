@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.google.android.material.button.MaterialButton;
+
 public class Generator {
     static public View generateButtonWithWrapper(Context context, String label, View.OnClickListener clickListener) {
-        Button button = new Button(context);
+        Button button = new MaterialButton(context);
         button.setOnClickListener(clickListener);
 
         button.setText(label);
