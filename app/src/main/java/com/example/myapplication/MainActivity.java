@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.example.myapplication.StarBuzz.StarBuzzMainActivity;
+import com.example.myapplication.Workout.WorkoutMainActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.resources.TextAppearance;
 
@@ -159,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         });
         wrapperLayout.addView(buttonForConstraintLayoutActivity);
 
-        View buttonForDrinksApp = Generator.generateButtonWithWrapper(this, "StarBuzz", view -> {
+        View buttonForDrinksApp = Generator.generateButtonWithWrapper(this, "ListView", view -> {
             startActivity(new Intent(this, StarBuzzMainActivity.class));
         });
         wrapperLayout.addView(buttonForDrinksApp);
@@ -168,6 +169,11 @@ public class MainActivity extends AppCompatActivity {
             toggleTheme();
         });
         wrapperLayout.addView(changeThemeButton);
+
+        View workoutButton = Generator.generateButtonWithWrapper(this, "Fragments", view -> {
+            startActivity(new Intent(this, WorkoutMainActivity.class));
+        });
+        wrapperLayout.addView(workoutButton);
 
         setContentView(mainScrollview);
     }

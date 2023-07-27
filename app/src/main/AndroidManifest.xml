@@ -23,6 +23,8 @@
         <activity android:name=".FrameLayoutActivity" />
         <activity android:name=".ConstraintLayoutActivity" />
         <activity android:name=".StarBuzz.StarBuzzMainActivity" />
+        <activity android:name=".Workout.WorkoutMainActivity" />
+        <activity android:name=".Workout.WorkoutDetailActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
