@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.Generator;
@@ -26,8 +27,8 @@ public class WorkoutDetailActivity extends AppCompatActivity {
 
 
         // How to attach the fragment to the activity wrapped by a container (ViewGroup of your choice)
-        LinearLayout activityWrapper = new LinearLayout(this);
-        activityWrapper.setOrientation(LinearLayout.VERTICAL);
+        // Is is recommended to use FragmentContainerView to wrap your containers instead of FrameLayout
+        FragmentContainerView activityWrapper = new FragmentContainerView(this);
         activityWrapper.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             activityWrapper.setId(View.generateViewId());
