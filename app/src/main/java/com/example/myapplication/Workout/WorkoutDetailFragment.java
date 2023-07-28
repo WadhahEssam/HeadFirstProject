@@ -15,7 +15,9 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
 
 public class WorkoutDetailFragment extends Fragment {
-    private Integer workoutID;
+    private int workoutID;
+    private TextView titleTextView;
+    private TextView descriptionTextView;
 
     @Nullable
     @Override
@@ -32,17 +34,31 @@ public class WorkoutDetailFragment extends Fragment {
 
         TextView title = new TextView(getContext());
         title.setTextSize(30);
-        title.setText("Hello there");
+        this.titleTextView = title;
         wrapper.addView(title);
 
         TextView description = new TextView(getContext());
-        description.setText("this is a description");
+        this.descriptionTextView = description;
         wrapper.addView(description);
 
         return wrapper;
     }
 
-    public void setWorkoutID(Integer workoutID) {
+    @Override
+    public void onStart() {
+        super.onStart();
+        Workout currentWorkout = Workout.workouts[workoutID];
+        descriptionTextView.setText(currentWorkout.getDescription());
+        titleTextView.setText(currentWorkout.getName());
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        System.out.println("onCreate " + workoutID);
+    }
+
+    public void setWorkoutID(int workoutID) {
         this.workoutID = workoutID;
     }
 }

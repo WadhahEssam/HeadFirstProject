@@ -40,7 +40,9 @@ public class WorkoutDetailActivity extends AppCompatActivity {
         //        activityWrapper.addView(button);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        Fragment workoutDetailFragment = new WorkoutDetailFragment();
+        WorkoutDetailFragment workoutDetailFragment = new WorkoutDetailFragment();
+        int workoutID =  getIntent().getIntExtra("workoutID", 0);
+        workoutDetailFragment.setWorkoutID(workoutID);
         fragmentTransaction.add(activityWrapper.getId(), workoutDetailFragment);
         fragmentTransaction.commit();
 
