@@ -30,8 +30,8 @@ import com.example.myapplication.Generator;
 
 
 public class WorkoutMainActivity extends AppCompatActivity implements WorkoutListFragment.ListFragmentClickListener {
-    private WorkoutDetailFragment workoutDetailFragment;
     private LinearLayout workoutDetailView;
+    private WorkoutListFragment workoutListFragment;
 
     public boolean isTablet() {
         int screenSize = this.getResources().getConfiguration().screenLayout
@@ -61,6 +61,7 @@ public class WorkoutMainActivity extends AppCompatActivity implements WorkoutLis
             listFCView.setId(View.generateViewId());
         }
         WorkoutListFragment workoutListFragment = new WorkoutListFragment();
+        this.workoutListFragment = workoutListFragment;
         ll.addView(listFCView);
         fragTrans.add(listFCView.getId(), workoutListFragment);
 
@@ -75,7 +76,6 @@ public class WorkoutMainActivity extends AppCompatActivity implements WorkoutLis
                 workoutDetailView.setId(View.generateViewId());
             }
             WorkoutDetailFragment workoutDetailFragment = new WorkoutDetailFragment();
-            this.workoutDetailFragment = workoutDetailFragment;
             ll.addView(workoutDetailView);
             fragTrans.add(workoutDetailView.getId(), workoutDetailFragment);
         }
@@ -93,8 +93,9 @@ public class WorkoutMainActivity extends AppCompatActivity implements WorkoutLis
             WorkoutDetailFragment newWorkoutDetailFragment = new WorkoutDetailFragment();
             newWorkoutDetailFragment.setWorkoutID(position);
             fragTrans.replace(workoutDetailView.getId(), newWorkoutDetailFragment);
-            fragTrans.addToBackStack(null);
             fragTrans.commit();
+
+            workoutListFragment.setSelectedWorkout(position);
         } else {
             Intent i = new Intent(this, WorkoutDetailActivity.class);
             i.putExtra("workoutID", position);

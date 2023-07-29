@@ -3,6 +3,7 @@ package com.example.myapplication.Workout;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -14,12 +15,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 
+import com.example.myapplication.R;
+
 public class WorkoutListFragment extends ListFragment {
     interface ListFragmentClickListener {
         void onListItemClicked(int position);
     }
 
     private ListFragmentClickListener listener;
+    private ArrayAdapter<Workout> adapter;
+    private int selectedWorkout = -1;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -30,7 +35,7 @@ public class WorkoutListFragment extends ListFragment {
     @Override
     public void onStart() {
         super.onStart();
-        setListAdapter(new ArrayAdapter(getContext(), 0, Workout.workouts) {
+        ArrayAdapter<Workout> adapter = new ArrayAdapter(getContext(), 0, Workout.workouts) {
             @NonNull
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -39,11 +44,18 @@ public class WorkoutListFragment extends ListFragment {
                 TextView tv = new TextView(getContext());
                 tv.setText(Workout.workouts[position].getName());
                 tv.setTextSize(20);
+                if (selectedWorkout == position) {
+                    ll.setBackgroundColor(getResources().getColor(R.color.kindaBlue));
+                    int white = Color.parseColor("#FFFFFF");
+                    tv.setTextColor(white);
+                }
                 ll.addView(tv);
 
                 return ll;
             }
-        });
+        };
+        this.adapter = adapter;
+        setListAdapter(adapter);
     }
 
     @Override
@@ -58,5 +70,11 @@ public class WorkoutListFragment extends ListFragment {
         if (listener != null) {
             listener.onListItemClicked(position);
         }
+    }
+
+    public void setSelectedWorkout(int position) {
+        System.out.println("set selected workout" + position);
+        this.selectedWorkout = position;
+        adapter.notifyDataSetChanged();
     }
 }
