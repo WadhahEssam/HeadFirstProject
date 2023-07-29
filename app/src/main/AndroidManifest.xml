@@ -25,6 +25,7 @@
         <activity android:name=".StarBuzz.StarBuzzMainActivity" />
         <activity android:name=".Workout.WorkoutMainActivity" />
         <activity android:name=".Workout.WorkoutDetailActivity" />
+        <activity android:name=".StopWatchFragment.StopWatchActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

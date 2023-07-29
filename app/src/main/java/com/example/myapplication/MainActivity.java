@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.example.myapplication.StarBuzz.StarBuzzMainActivity;
+import com.example.myapplication.StopWatchFragment.StopWatchActivity;
 import com.example.myapplication.Workout.WorkoutMainActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.resources.TextAppearance;
@@ -174,6 +175,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, WorkoutMainActivity.class));
         });
         wrapperLayout.addView(workoutButton);
+
+        View stopWatchFragmentButton = Generator.generateButtonWithWrapper(this, "Stop Watch Fragment", view -> {
+            startActivity(new Intent(this, StopWatchActivity.class));
+        });
+        wrapperLayout.addView(stopWatchFragmentButton);
 
         setContentView(mainScrollview);
     }
