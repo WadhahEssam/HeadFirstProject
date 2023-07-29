@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
 
 public class WorkoutDetailFragment extends Fragment {
-    private int workoutID;
+    private int workoutID = -1;
     private TextView titleTextView;
     private TextView descriptionTextView;
 
@@ -47,15 +47,11 @@ public class WorkoutDetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Workout currentWorkout = Workout.workouts[workoutID];
-        descriptionTextView.setText(currentWorkout.getDescription());
-        titleTextView.setText(currentWorkout.getName());
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        System.out.println("onCreate " + workoutID);
+        if (workoutID != -1) {
+            Workout currentWorkout = Workout.workouts[workoutID];
+            descriptionTextView.setText(currentWorkout.getDescription());
+            titleTextView.setText(currentWorkout.getName());
+        }
     }
 
     public void setWorkoutID(int workoutID) {

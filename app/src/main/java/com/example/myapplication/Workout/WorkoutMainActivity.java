@@ -7,6 +7,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -21,6 +24,7 @@ import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.ListFragment;
+import androidx.transition.Transition;
 
 import com.example.myapplication.Generator;
 
@@ -45,6 +49,9 @@ public class WorkoutMainActivity extends AppCompatActivity implements WorkoutLis
         ll.setOrientation(LinearLayout.HORIZONTAL);
         ll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
+        FragmentManager fragManager = getSupportFragmentManager();
+        FragmentTransaction fragTrans = fragManager.beginTransaction();
+
         LinearLayout listFCView = new LinearLayout(this);
         LinearLayout.LayoutParams listFCViewLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         listFCViewLayoutParams.weight = 1;
@@ -55,6 +62,7 @@ public class WorkoutMainActivity extends AppCompatActivity implements WorkoutLis
         }
         WorkoutListFragment workoutListFragment = new WorkoutListFragment();
         ll.addView(listFCView);
+        fragTrans.add(listFCView.getId(), workoutListFragment);
 
         if (isTablet()) {
             LinearLayout workoutDetailView = new LinearLayout(this);
@@ -69,14 +77,9 @@ public class WorkoutMainActivity extends AppCompatActivity implements WorkoutLis
             WorkoutDetailFragment workoutDetailFragment = new WorkoutDetailFragment();
             this.workoutDetailFragment = workoutDetailFragment;
             ll.addView(workoutDetailView);
-        }
-
-        FragmentManager fragManager = getSupportFragmentManager();
-        FragmentTransaction fragTrans = fragManager.beginTransaction();
-        fragTrans.add(listFCView.getId(), workoutListFragment);
-        if (isTablet()) {
             fragTrans.add(workoutDetailView.getId(), workoutDetailFragment);
         }
+
         fragTrans.commit();
 
         setContentView(ll);
@@ -90,6 +93,7 @@ public class WorkoutMainActivity extends AppCompatActivity implements WorkoutLis
             WorkoutDetailFragment newWorkoutDetailFragment = new WorkoutDetailFragment();
             newWorkoutDetailFragment.setWorkoutID(position);
             fragTrans.replace(workoutDetailView.getId(), newWorkoutDetailFragment);
+            fragTrans.addToBackStack(null);
             fragTrans.commit();
         } else {
             Intent i = new Intent(this, WorkoutDetailActivity.class);
