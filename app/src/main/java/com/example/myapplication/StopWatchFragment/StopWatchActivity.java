@@ -29,7 +29,6 @@ public class StopWatchActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             StopWatchFragment stopWatchFragment = new StopWatchFragment();
             fragmentTransaction.add(android.R.id.content, stopWatchFragment);
-            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
         }
