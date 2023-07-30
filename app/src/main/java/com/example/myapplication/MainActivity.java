@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatSpinner;
 
+import com.example.myapplication.BitsAndPizzas.BitsAndPizzasMainActivity;
 import com.example.myapplication.StarBuzz.StarBuzzMainActivity;
 import com.example.myapplication.StopWatchFragment.StopWatchActivity;
 import com.example.myapplication.Workout.WorkoutMainActivity;
@@ -188,6 +189,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         wrapperLayout.addView(viewDialogButton);
+
+        View bitsAndPizzasButton = Generator.generateButtonWithWrapper(this, "Bits And Pizzas (Pager&Tabs)", view -> {
+            startActivity(new Intent(this, BitsAndPizzasMainActivity.class));
+        });
+        wrapperLayout.addView(bitsAndPizzasButton);
 
         setContentView(mainScrollview);
     }
