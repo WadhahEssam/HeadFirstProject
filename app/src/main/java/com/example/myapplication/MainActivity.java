@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -180,6 +181,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, StopWatchActivity.class));
         });
         wrapperLayout.addView(stopWatchFragmentButton);
+
+        View viewDialogButton = Generator.generateButtonWithWrapper(this, "View Dialog", view -> {
+            DialogFragment dialogFragment = new DialogFragment();
+            dialogFragment.show(getSupportFragmentManager(), "myDialog");
+        });
+
+        wrapperLayout.addView(viewDialogButton);
 
         setContentView(mainScrollview);
     }
