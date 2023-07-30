@@ -5,16 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.myapplication.R;
-
-public class BitsAndPizzasMainActivity extends AppCompatActivity {
+public class BitsAndPizzasMainActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,22 +20,19 @@ public class BitsAndPizzasMainActivity extends AppCompatActivity {
         wrapper.setOrientation(LinearLayout.VERTICAL);
 
         // ViewPager
-        ViewPager viewPager = new ViewPager(this);
+        ViewPager2 viewPager = new ViewPager2(this);
         ViewPager.LayoutParams viewPagerLP = new ViewPager.LayoutParams();
         viewPagerLP.width = ViewGroup.LayoutParams.MATCH_PARENT;
         viewPagerLP.height = ViewGroup.LayoutParams.MATCH_PARENT;
         viewPager.setLayoutParams(viewPagerLP);
-        HomePagerAdapter homePagerAdapter = new HomePagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        HomePagerAdapter homePagerAdapter = new HomePagerAdapter(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             viewPager.setId(View.generateViewId());
         }
-        homePagerAdapter.addFragment(new HomeFragment(), "Home");
-        homePagerAdapter.addFragment(new PizzasFragment(), "Pizzas");
-        homePagerAdapter.addFragment(new PastaFragment(), "Pasta");
+
         viewPager.setAdapter(homePagerAdapter);
         wrapper.addView(viewPager);
 
-        viewPager.setCurrentItem(2);
         setContentView(wrapper);
     }
 }

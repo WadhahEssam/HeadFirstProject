@@ -1,41 +1,26 @@
 package com.example.myapplication.BitsAndPizzas;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class HomePagerAdapter extends FragmentPagerAdapter {
-    private List<Fragment> fragmentList = new ArrayList<Fragment>();
-    private List<String> fragmentTitleList = new ArrayList<String>();
+public class HomePagerAdapter extends FragmentStateAdapter {
+    private static final int SIZE = 4;
 
-    public HomePagerAdapter(@NonNull FragmentManager fm, int behavior) {
-        super(fm, behavior);
+    public HomePagerAdapter(FragmentActivity fa) {
+        super(fa);
     }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
-        return fragmentList.get(position);
+    public Fragment createFragment(int position) {
+        return new PastaFragment();
     }
 
     @Override
-    public int getCount() {
-        return fragmentList.size();
-    }
-
-    public void addFragment(Fragment fragment, String title) {
-        fragmentList.add(fragment);
-        fragmentTitleList.add(title);
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return fragmentTitleList.get(position);
+    public int getItemCount() {
+        return SIZE;
     }
 }
